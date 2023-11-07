@@ -45,7 +45,7 @@ const App = () => {
 
       // เมื่อถึงปี 2021 ให้ปิดการดึงข้อมูล
       if (year === 2021) {
-        setFetchingData(false);
+        setYear(1950);
       }
 
       // เมื่อผู้ใช้ปิดการดึงข้อมูล ให้ล้าง interval
