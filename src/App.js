@@ -31,24 +31,26 @@ const App = () => {
     },
   });
   const [year, setYear] = useState(1950);
-  const [fetchingData, setFetchingData] = useState(false);
+  const [fetchingData, setFetchingData] = useState(true);
 
   const toggleFetching = () => {
     setFetchingData(!fetchingData);
   };
 
   useEffect(() => {
-    if (fetchingData && year < 2021) {
+    if (fetchingData) {
       const interval = setInterval(() => {
-        setYear(year + 1);
+        if (year < 2021) {
+          setYear(year + 1);
+        } else {
+          setYear(1950);
+        }
       }, 500);
 
-      // เมื่อถึงปี 2021 ให้ปิดการดึงข้อมูล
       if (year === 2021) {
-        setYear(1950);
+        setFetchingData(false);
       }
 
-      // เมื่อผู้ใช้ปิดการดึงข้อมูล ให้ล้าง interval
       return () => {
         clearInterval(interval);
       };
