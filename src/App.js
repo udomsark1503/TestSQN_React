@@ -38,7 +38,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(year);
     if (fetchingData) {
       axios
         .get(`${process.env.REACT_APP_API_URL}/PullData?year=${year}`)
@@ -58,17 +57,6 @@ const App = () => {
         .catch((error) => {
           console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
         });
-    }
-}, [year, fetchingData]);
-    useEffect(() => {
-    if (!fetchingData && year < 2021) {
-      const interval = setInterval(() => {
-        setYear(year + 1);
-      }, 500);
-
-      return () => {
-        clearInterval(interval);
-      };
     }
   }, [year, fetchingData]);
   return (
