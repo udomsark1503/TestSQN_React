@@ -59,20 +59,17 @@ const App = () => {
           console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
         });
     }
+}, [year, fetchingData]);
+    useEffect(() => {
+    if (!fetchingData && year < 2021) {
+      const interval = setInterval(() => {
+        setYear(year + 1);
+      }, 500);
 
-    const interval = setInterval(() => {
-      if (!fetchingData) {
-        if (year < 2021) {
-          setYear(year + 1);
-        } else {
-          setYear(1950);
-        }
-      }
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-    };
+      return () => {
+        clearInterval(interval);
+      };
+    }
   }, [year, fetchingData]);
   return (
     <Row gutter={[24,24]}>
