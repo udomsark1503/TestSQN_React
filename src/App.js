@@ -29,6 +29,9 @@ plotOptions: {
                 fontSize: "1rem",
                 fontWeight: "bold",
               },
+                            formatter: (val) => {
+                return val + " Person"; //(val).toFixed(2) + " KG";
+              },
             },
           },
         },
