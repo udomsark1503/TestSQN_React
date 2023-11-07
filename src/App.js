@@ -20,10 +20,13 @@ const App = () => {
           borderRadius: 4,
           borderRadiusApplication: "end",
           horizontal: true,
+          dataLabels: {
+          position: "top",
+          },
         },
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
       },
       xaxis: {
         categories: [],
