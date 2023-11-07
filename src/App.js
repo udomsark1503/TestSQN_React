@@ -122,7 +122,7 @@ const App = () => {
           />
         </Card>
       </Col>
-      <Col xs={12} className="align-justify-center">
+      <Col xs={24} md={12} className="align-justify-center">
         {" "}
         <Button onClick={toggleFetching} className="textMid radiusO On-OffBTN">
           {fetchingData ? (
@@ -132,7 +132,7 @@ const App = () => {
           )}
         </Button>
       </Col>
-      <Col xs={12} className="align-justify-center textRight">
+      <Col xs={24} md={12} className="align-justify-center textRight">
         <div className="TotalPopulation">
           <h1>{year}</h1>
           <h2>Total : {totalPopulation.toLocaleString()}</h2>
