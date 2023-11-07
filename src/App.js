@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
+import { Button, Card, Col, Row } from "antd";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 
@@ -15,15 +15,15 @@ const App = () => {
         type: "bar",
         height: 350,
       },
-plotOptions: {
+      plotOptions: {
         bar: {
           distributed: true,
           horizontal: true,
-          barHeight: '95%',
+          barHeight: "95%",
           borderRadius: 3,
           dataLabels: {
-            position: 'top',
-          }
+            position: "top",
+          },
         },
       },
       dataLabels: {
@@ -32,11 +32,22 @@ plotOptions: {
       xaxis: {
         categories: [],
       },
-            legend: {
-        position: 'top',
-        horizontalAlign: 'center',
+      legend: {
+        position: "top",
+        horizontalAlign: "left",
       },
-      colors: ['violet', 'red', '#36B23C', '#3374FF', '#FF33E2', '#33FFF6', 'black', 'white', 'yellow', 'green'],
+      colors: [
+        "#190482",
+        "#7752FE",
+        "#8E8FFA",
+        "#232D3F",
+        "#04364A",
+        "#176B87",
+        "#64CCC5",
+        "#12486B",
+        "#00A9FF",
+        "#363062",
+      ],
     },
   });
   const [year, setYear] = useState(1950);
@@ -56,7 +67,7 @@ plotOptions: {
           setYear(1950);
           setTotalPopulation(0);
         }
-      }, 400);
+      }, 500);
 
       if (year === 2021) {
         setFetchingData(false);
@@ -71,14 +82,14 @@ plotOptions: {
     }
   }, [year, fetchingData]);
   useEffect(() => {
-    console.log(year);
+    //console.log(year);
     if (fetchingData) {
       axios
         .get(`${process.env.REACT_APP_API_URL}/PullData?year=${year}`)
         .then((response) => {
           const data = response.data;
-          const Country_name = data.map((item) => item['Country name']);
-          const populations = data.map((item) => parseInt(item['Population']));
+          const Country_name = data.map((item) => item["Country name"]);
+          const populations = data.map((item) => parseInt(item["Population"]));
           const totalPop = populations.reduce((acc, curr) => acc + curr, 0);
           setTotalPopulation(totalPop);
           setChartData((prevData) => ({
@@ -91,27 +102,41 @@ plotOptions: {
           }));
         })
         .catch((error) => {
-          console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+          console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
         });
     }
   }, [year, fetchingData]);
   return (
-    <Row gutter={[24,24]}>
-      <Col xs={24}>
-        <p>Population growth per country, 1950 to 2021</p>
-        <p>Click on the legend below to filter by continent 👇</p>
+    <Row gutter={[24, 24]}>
+      <Col xs={24} className="textMid">
+        <h1>Population growth per country, 1950 to 2021</h1>
+        <h2>Click on the legend below to filter by continent 👇</h2>
       </Col>
-    <button onClick={toggleFetching}>
-        {fetchingData ? 'หยุดดึงข้อมูล' : 'เริ่มดึงข้อมูล'}
-      </button>
-  <p>Total Population for Year {year}: {totalPopulation}</p>
       <Col xs={24}>
-        <ReactApexChart
-          options={chartData.options}
-          series={chartData.series}
-          type="bar"
-          height={350}
-        />
+        <Card bordered={true} className="CardConfig">
+          <ReactApexChart
+            options={chartData.options}
+            series={chartData.series}
+            type="bar"
+            height={350}
+          />
+        </Card>
+      </Col>
+      <Col xs={12} className="align-justify-center">
+        {" "}
+        <Button onClick={toggleFetching} className="textMid radiusO On-OffBTN">
+          {fetchingData ? (
+            <i class="align-justify-center fi fi-sr-pause"></i>
+          ) : (
+            <i class="align-justify-center fi fi-sr-play"></i>
+          )}
+        </Button>
+      </Col>
+      <Col xs={12} className="align-justify-center textRight">
+        <div className="TotalPopulation">
+          <h1>{year}</h1>
+          <h2>Total : {totalPopulation.toLocaleString()}</h2>
+        </div>
       </Col>
     </Row>
   );

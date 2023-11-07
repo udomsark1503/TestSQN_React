@@ -1,4 +1,51 @@
-/*@import "~@flaticon/flaticon-uicons/css/all/all";*/
-#SvgjsPath1101 {
-  fill: red !important;
+@import "~@flaticon/flaticon-uicons/css/all/all";
+body {
+  background-color: #DDE6ED;
+}
+h1 {
+  color: #2D4356;
+}
+h2 {
+  color: #435B66;
+}
+.textMid {
+  text-align: center;
+}
+.textRight {
+  text-align: right;
+}
+.align-justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.radiusO {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* สร้างรูปร่างทรงกลม */
+}
+.CardConfig {
+  background-color: #DDE6ED;
+  box-shadow: 0 0 15px 1px;
+}
+.On-OffBTN {
+  background-color: #352F44;
+  color: #B9B4C7;
+  transition: all 0.2s;
+}
+.On-OffBTN:hover {
+  background-color: #B9B4C7 !important;
+  color: #352F44 !important;
+  border-color: #B9B4C7 !important;
+}
+.On-OffBTN i {
+  font-size: 1.5rem;
+}
+.TotalPopulation h1 {
+  margin: 0;
+  font-size: 5rem;
+}
+.TotalPopulation h2 {
+  margin: 0;
+  font-size: 3rem;
 }
