@@ -20,15 +20,12 @@ plotOptions: {
           horizontal: true,
           borderRadius: 3,
           dataLabels: {
-            position: 'center',
+            position: 'bottom',
           }
         },
       },
       dataLabels: {
         enabled: true,
-                formatter: (val) => {
-            return val + " Person";
-          },
       },
       xaxis: {
         categories: [],
