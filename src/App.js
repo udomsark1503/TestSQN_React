@@ -38,12 +38,13 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log(year);
     if (fetchingData) {
       axios
         .get(`${process.env.REACT_APP_API_URL}/PullData?year=${year}`)
         .then((response) => {
           const data = response.data;
-          const Country_name = data.map((item) => item['Country Name']);
+          const Country_name = data.map((item) => item['Country name']);
           const populations = data.map((item) => parseInt(item['Population']));
           setChartData((prevData) => ({
             ...prevData,
