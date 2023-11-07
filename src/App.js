@@ -45,10 +45,11 @@ const App = () => {
         } else {
           setYear(1950);
         }
-      }, 500);
+      }, 200);
 
       if (year === 2021) {
         setFetchingData(false);
+        setYear(1950);
       }
 
       return () => {
