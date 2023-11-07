@@ -14,30 +14,18 @@ const App = () => {
       chart: {
         type: "bar",
         height: 350,
-        stacked: true,
       },
 plotOptions: {
         bar: {
           horizontal: true,
           borderRadius: 3,
-          borderRadiusApplication: "end", // 'around', 'end'
-          borderRadiusWhenStacked: "last", // 'all', 'last'
           dataLabels: {
-            total: {
-              enabled: true,
-              style: {
-                fontSize: "1rem",
-                fontWeight: "bold",
-              },
-                            formatter: (val) => {
-                return val + " Person"; //(val).toFixed(2) + " KG";
-              },
-            },
-          },
+            position: 'bottom',
+          }
         },
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
       },
       xaxis: {
         categories: [],
