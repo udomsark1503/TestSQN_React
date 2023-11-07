@@ -43,7 +43,7 @@ const App = () => {
         .get(`${process.env.REACT_APP_API_URL}/PullData?year=${year}`)
         .then((response) => {
           const data = response.data;
-          const Country_name = data.map((item) => item['Country name']);
+          const Country_name = data.map((item) => item['Country Name']);
           const populations = data.map((item) => parseInt(item['Population']));
           setChartData((prevData) => ({
             ...prevData,
