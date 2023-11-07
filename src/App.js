@@ -21,7 +21,7 @@ plotOptions: {
           horizontal: true,
           borderRadius: 3,
           dataLabels: {
-            position: 'bottom',
+            position: 'top',
           }
         },
       },
