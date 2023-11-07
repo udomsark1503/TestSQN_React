@@ -50,6 +50,7 @@ const App = () => {
       if (year === 2021) {
         setFetchingData(false);
         setYear(1950);
+        setFetchingData(true);
       }
 
       return () => {
