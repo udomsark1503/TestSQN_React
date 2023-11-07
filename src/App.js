@@ -19,6 +19,7 @@ plotOptions: {
         bar: {
           distributed: true,
           horizontal: true,
+          barHeight: '90%',
           borderRadius: 3,
           dataLabels: {
             position: 'top',
