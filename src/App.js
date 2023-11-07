@@ -68,7 +68,7 @@ const App = () => {
           setYear(1950);
         }
       }
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(interval);
