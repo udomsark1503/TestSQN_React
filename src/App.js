@@ -34,6 +34,7 @@ plotOptions: {
   });
   const [year, setYear] = useState(1950);
   const [fetchingData, setFetchingData] = useState(true);
+  const [totalPopulation, setTotalPopulation] = useState(0);
 
   const toggleFetching = () => {
     setFetchingData(!fetchingData);
@@ -46,12 +47,14 @@ plotOptions: {
           setYear(year + 1);
         } else {
           setYear(1950);
+          setTotalPopulation(0);
         }
-      }, 200);
+      }, 400);
 
       if (year === 2021) {
         setFetchingData(false);
         setYear(1950);
+        setTotalPopulation(0);
         setFetchingData(true);
       }
 
@@ -69,6 +72,8 @@ plotOptions: {
           const data = response.data;
           const Country_name = data.map((item) => item['Country name']);
           const populations = data.map((item) => parseInt(item['Population']));
+          const totalPop = populations.reduce((acc, curr) => acc + curr, 0);
+          setTotalPopulation(totalPop);
           setChartData((prevData) => ({
             ...prevData,
             series: [{ data: populations }],
@@ -92,6 +97,7 @@ plotOptions: {
     <button onClick={toggleFetching}>
         {fetchingData ? 'หยุดดึงข้อมูล' : 'เริ่มดึงข้อมูล'}
       </button>
+  <p>Total Population for Year {year}: {totalPopulation}</p>
       <Col xs={24}>
         <ReactApexChart
           options={chartData.options}
