@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 
@@ -31,8 +31,44 @@ const App = () => {
     },
   });
   const [year, setYear] = useState(1950);
+  const [countries, setCountries] = useState([
+    "China",
+    "India",
+    "USA",
+    "Russia",
+    "Japan",
+    "Indonesia",
+    "Germany",
+    "Brazil",
+    "UK",
+    "Italy",
+    "France",
+    "Bangladesh",
+  ]);
+  const [fetchingData, setFetchingData] = useState(false);
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/PullData`)
+    if (fetchingData) {
+      const timer = setInterval(() => {
+        if (year <= 2021) {
+          fetchDataForYear(year);
+          setYear(year + 1);
+        } else {
+          setFetchingData(false);
+        }
+      }, 5000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [year, countries, fetchingData]);
+  const fetchDataForYear = (targetYear) => {
+    axios
+      .get(
+        `${
+          process.env.REACT_APP_API_URL
+        }/PullData?year=${targetYear}&countries=${countries.join(",")}`
+      )
       .then((response) => {
         const data = response.data;
         const Country_name = data.map((entry) => entry["Country name"]);
@@ -49,12 +85,20 @@ const App = () => {
       .catch((error) => {
         console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
       });
-  }, []);
+  };
+
+  const startFetchingData = () => {
+    setYear(1950);
+    setFetchingData(true);
+  };
+  const years = Array.from({ length: 72 }, (_, i) => i + 1950);
+
   return (
-    <Row gutter={[24,24]}>
+    <Row gutter={[24, 24]}>
       <Col xs={24}>
         <p>Population growth per country, 1950 to 2021</p>
         <p>Click on the legend below to filter by continent 👇</p>
+        <Button onClick={startFetchingData}>Start Fetching Data</Button>
       </Col>
       <Col xs={24}>
         <ReactApexChart
