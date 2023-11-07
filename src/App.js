@@ -37,6 +37,22 @@ const App = () => {
     setFetchingData(!fetchingData);
   };
 
+    useEffect(() => {
+    if (fetchingData) {
+      const interval = setInterval(() => {
+        if (year < 2021) {
+          setYear(year + 1);
+        } else {
+          setYear(1950);
+        }
+      }, 500);
+
+      // เมื่อผู้ใช้ปิดการดึงข้อมูล ให้ล้าง interval
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [fetchingData]);
   useEffect(() => {
     if (fetchingData) {
       axios
