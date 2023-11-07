@@ -35,7 +35,7 @@ plotOptions: {
             legend: {
         position: 'top',
         horizontalAlign: 'center',
-      }
+      },
       colors: ['violet', 'red', '#36B23C', '#3374FF', '#FF33E2', '#33FFF6', 'black', 'white', 'yellow', 'green'],
     },
   });
