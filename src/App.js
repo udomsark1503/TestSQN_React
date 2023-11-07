@@ -54,6 +54,7 @@ const App = () => {
     }
   }, [fetchingData]);
   useEffect(() => {
+    console.log(year);
     if (fetchingData) {
       axios
         .get(`${process.env.REACT_APP_API_URL}/PullData?year=${year}`)
