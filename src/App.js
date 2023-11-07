@@ -14,19 +14,27 @@ const App = () => {
       chart: {
         type: "bar",
         height: 350,
+        stacked: true,
       },
-      plotOptions: {
+plotOptions: {
         bar: {
-          borderRadius: 4,
-          borderRadiusApplication: "end",
           horizontal: true,
+          borderRadius: 3,
+          borderRadiusApplication: "end", // 'around', 'end'
+          borderRadiusWhenStacked: "last", // 'all', 'last'
           dataLabels: {
-            position: "bottom",
+            total: {
+              enabled: true,
+              style: {
+                fontSize: "1rem",
+                fontWeight: "bold",
+              },
+            },
           },
         },
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
       },
       xaxis: {
         categories: [],
