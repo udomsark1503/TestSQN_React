@@ -17,6 +17,7 @@ const App = () => {
       },
 plotOptions: {
         bar: {
+          distributed: true,
           horizontal: true,
           borderRadius: 3,
           dataLabels: {
@@ -30,6 +31,7 @@ plotOptions: {
       xaxis: {
         categories: [],
       },
+      colors: ['violet', 'red', '#36B23C', '#3374FF', '#FF33E2', '#33FFF6', 'black', 'white', 'yellow', 'green'],
     },
   });
   const [year, setYear] = useState(1950);
