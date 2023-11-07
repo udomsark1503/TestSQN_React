@@ -21,7 +21,7 @@ const App = () => {
           borderRadiusApplication: "end",
           horizontal: true,
           dataLabels: {
-          position: "top",
+            position: "bottom",
           },
         },
       },
