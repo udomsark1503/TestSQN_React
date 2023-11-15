@@ -31,16 +31,7 @@ const App = () => {
             target="_top"
             style={{ textDecoration: "none" }}
           >
-            <img
-              alt="Made with Flourish"
-              src="https://public.flourish.studio/resources/made_with_flourish.svg"
-              style={{
-                width: "105px",
-                height: "16px",
-                border: "none",
-                margin: "0",
-              }}
-            />
+            
           </a>
         </div>
       </Col>
